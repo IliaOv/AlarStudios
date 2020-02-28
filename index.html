@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="style.css" rel="stylesheet">
+  <title>Test</title>
+</head>
+<body>
+
+<main>
+
+  <table class="table">
+    <thead>
+    <tr class="table__header">
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Control Panel</th>
+    </tr>
+    </thead>
+    <tbody class="table__body">
+    <tr class="table__row">
+      <td><input class="table__name" type="text" value="John" readonly></td>
+      <td><input class="table__phone" type="text" value="+79109109100" readonly></td>
+      <td>
+        <button class="table__edit" onclick="EditRow(event)">Edit</button>
+        <button class="table__del" onclick="DeleteRow(event)">Delete</button>
+      </td>
+    </tr>
+
+    <tr class="table__row">
+      <td><input class="table__name" type="text" value="Nicolas" readonly></td>
+      <td><input class="table__phone" type="text" value="+79859858500" readonly></td>
+      <td>
+        <button class="table__edit" onclick="EditRow(event)">Edit</button>
+        <button class="table__del" onclick="DeleteRow(event)">Delete</button>
+      </td>
+    </tr>
+
+    <tr class="table__row">
+      <td><input class="table__name" type="text" value="Peter" readonly></td>
+      <td><input class="table__phone" type="text" value="89169161600" readonly></td>
+      <td>
+        <button class="table__edit" onclick="EditRow(event)">Edit</button>
+        <button class="table__del" onclick="DeleteRow(event)">Delete</button>
+      </td>
+    </tr>
+
+    <tr class="table__row">
+      <td><input class="table__name" type="text" value="Alex" readonly></td>
+      <td><input class="table__phone" type="text" value="8-916-619-55-55" readonly></td>
+      <td>
+        <button class="table__edit" onclick="EditRow(event)">Edit</button>
+        <button class="table__del" onclick="DeleteRow(event)">Delete</button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <div class="add">
+    <label class="add__item">
+      Name
+      <input class="add__name" type="text" placeholder="Enter the name">
+    </label>
+    <label class="add__item">
+      Phone
+      <input class="add__phone" type="text" placeholder="Enter the phone">
+    </label>
+    <button class="add__btn" onclick="AddRow(event)">Add</button>
+  </div>
+
+</main>
+
+</body>
+
+<script>
+
+  function EditRow(e) {
+    let tblName = e.target.parentElement.parentElement.children[0].children[0],
+      tblPhone = e.target.parentElement.parentElement.children[1].children[0];
+
+    if (e.target.innerHTML === 'Edit') {
+      e.target.innerHTML = 'Save';
+      tblName.removeAttribute('readonly');
+      tblPhone.removeAttribute('readonly');
+      tblName.classList.add('table__name-focus');
+      tblPhone.classList.add('table__phone-focus');
+    } else {
+      e.target.innerHTML = 'Edit';
+      tblName.setAttribute('readonly', 'readonly');
+      tblPhone.setAttribute('readonly', 'readonly');
+      tblName.classList.remove('table__name-focus');
+      tblPhone.classList.remove('table__phone-focus');
+    }
+  }
+
+  DeleteRow = (e) => document.getElementsByClassName('table__body')[0].removeChild(e.target.parentElement.parentElement);
+
+  function AddRow() {
+
+    let tblRow = `<td><input class=\"table__name\" type=\"text\" value=\"${document.getElementsByClassName('add__name')[0].value}\" readonly></td>\n` +
+      `        <td><input class=\"table__phone\" type=\"text\" value=\"${document.getElementsByClassName('add__phone')[0].value}\" readonly></td>\n` +
+      "        <td>\n" +
+      "          <button class=\"table__edit\" onclick=\"EditRow(event)\">Edit</button>\n" +
+      "          <button class=\"table__del\" onclick=\"DeleteRow(event)\">Delete</button>\n" +
+      "        </td>\n",
+      childNode = document.createElement('tr');
+
+    childNode.classList.add("table__row");
+    childNode.innerHTML = tblRow;
+    document.getElementsByClassName('table__body')[0].appendChild(childNode);
+
+  }
+
+</script>
+</html>
