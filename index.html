@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link href="style.css" rel="stylesheet">
+  <script src="script.js"></script>
   <title>Test</title>
 </head>
 <body>
@@ -69,48 +70,18 @@
     <button class="add__btn" onclick="AddRow(event)">Add</button>
   </div>
 
+  <div class="error__text">
+    The entered data is not correct. Correct this and try again.
+  </div>
+
 </main>
 
+<footer class="page__footer">
+
+  <canvas class="canvas-big" width="600" height="600"></canvas>
+  <canvas class="canvas-small" width="600" height="50"></canvas>
+
+</footer>
 </body>
 
-<script>
-
-  function EditRow(e) {
-    let tblName = e.target.parentElement.parentElement.children[0].children[0],
-      tblPhone = e.target.parentElement.parentElement.children[1].children[0];
-
-    if (e.target.innerHTML === 'Edit') {
-      e.target.innerHTML = 'Save';
-      tblName.removeAttribute('readonly');
-      tblPhone.removeAttribute('readonly');
-      tblName.classList.add('table__name-focus');
-      tblPhone.classList.add('table__phone-focus');
-    } else {
-      e.target.innerHTML = 'Edit';
-      tblName.setAttribute('readonly', 'readonly');
-      tblPhone.setAttribute('readonly', 'readonly');
-      tblName.classList.remove('table__name-focus');
-      tblPhone.classList.remove('table__phone-focus');
-    }
-  }
-
-  DeleteRow = (e) => document.getElementsByClassName('table__body')[0].removeChild(e.target.parentElement.parentElement);
-
-  function AddRow() {
-
-    let tblRow = `<td><input class=\"table__name\" type=\"text\" value=\"${document.getElementsByClassName('add__name')[0].value}\" readonly></td>\n` +
-      `        <td><input class=\"table__phone\" type=\"text\" value=\"${document.getElementsByClassName('add__phone')[0].value}\" readonly></td>\n` +
-      "        <td>\n" +
-      "          <button class=\"table__edit\" onclick=\"EditRow(event)\">Edit</button>\n" +
-      "          <button class=\"table__del\" onclick=\"DeleteRow(event)\">Delete</button>\n" +
-      "        </td>\n",
-      childNode = document.createElement('tr');
-
-    childNode.classList.add("table__row");
-    childNode.innerHTML = tblRow;
-    document.getElementsByClassName('table__body')[0].appendChild(childNode);
-
-  }
-
-</script>
 </html>

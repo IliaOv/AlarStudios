@@ -101,6 +101,7 @@ th, td {
   margin-top: 4rem;
   display: flex;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .add__item {
@@ -118,7 +119,7 @@ th, td {
   margin-top: 0.3rem;
   min-height: 1.6rem;
   padding-left: .5rem;
-  width: 22.7rem;
+  width: 20rem;
 }
 
 .add__name:focus,
@@ -143,4 +144,26 @@ th, td {
 .add__btn:hover, .add__btn:focus {
   background: #56ba32;
   color: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 .1rem #56ba32;
+}
+
+.error__text {
+  display: none;
+  margin-top: 1rem;
+  color: #b00;
+}
+
+.page__footer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 5rem;
+}
+
+.canvas-big,
+.canvas-small {
+  background: #fff;
+  display: block;
+  margin-right: 1rem;
 }
