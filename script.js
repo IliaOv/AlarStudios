@@ -97,20 +97,12 @@ document.addEventListener('DOMContentLoaded', function () {
     return undefined;
   }
 
-  function rgbToHex(r, g, b) {
-    if (r > 255 || g > 255 || b > 255)
-      throw "Invalid color component";
-    return ((r << 16) | (g << 8) | b).toString(16);
-  }
-
   canvasBig.addEventListener('click', function (e) {
     let pos = findPos(this),
       x = e.pageX - pos.x,
       y = e.pageY - pos.y,
       c = this.getContext('2d'),
-      p = c.getImageData(x, y, 1, 1).data,
-      hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
-    console.log(hex);
+      p = c.getImageData(x, y, 1, 1).data;
     ctxSmall.fillStyle = `rgb(${p[0]},${p[1]},${p[2]})`;
     ctxSmall.fillRect(0, 0, 600, 50);
   });
